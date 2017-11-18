@@ -1,0 +1,34 @@
+{
+  "devDependencies": {
+    "babel-cli": "^6.2.0",
+    "babel-polyfill": "^6.3.14",
+    "babel-preset-es2015-node5": "^1.1.1",
+    "concurrently": "^3.5.0",
+    "concurrently-dashboard": "0.0.2",
+    "nodemon": "^1.12.1",
+    "reload": "^1.1.6"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.2.0",
+    "body-parser": "^1.17.2",
+    "mongoose": "^4.10.8",
+    "morgan": "^1.8.2",
+    "pug": "^2.0.0-rc.4",
+    "source-map-support": "^0.4.0"
+  },
+  "scripts": {
+    "build-backend": "./node_modules/.bin/babel src/ --out-dir build/ --source-maps",
+    "watch-backend": "./node_modules/.bin/babel src/ --out-dir build/ --source-maps --watch",
+    "dev": "concurrently \"npm run watch-backend\" \"npm run reload-server\"",
+    "dashboard": "concurrently-dashboard --command 'npm run watch-backend' --label 'Watch Backend' --command 'npm run reload-server' --label 'Reload-server(backend)'",
+    "start": "node build/index.js",
+    "reload-server": "nodemon build/index.js"
+  },
+  "babel": {
+    "presets": [
+      "es2015-node5"
+    ]
+  },
+  "author": "Axel Rauschmayer",
+  "license": "MIT"
+}
